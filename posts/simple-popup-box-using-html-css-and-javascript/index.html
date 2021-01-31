@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Design Simple Popup Box Using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="Popup boxes / Modal are useful way of showing an important information to the website visitors. In this post we will see how to create a simple popup box with shadow overlay and close button using HTML, CSS and JavaScript."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Simple popup box using HTML, CSS & JavaScript"/>
+	    <div class="title">Design Simple Popup Box</div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      Popup boxes / Modal are useful way of showing an important information to the website visitors. In this post we will see how to create a simple popup box with shadow overlay and close button using HTML, CSS and JavaScript.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;popup&quot; id=&quot;popup-1&quot;&gt;
+  &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;content&quot;&gt;
+    &lt;div class=&quot;close-btn&quot; onclick=&quot;togglePopup()&quot;&gt;&amp;times;&lt;/div&gt;
+    &lt;h1&gt;Title&lt;/h1&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo aspernatur laborum rem sed laudantium excepturi veritatis voluptatum architecto, dolore quaerat totam officiis nisi animi accusantium alias inventore nulla atque debitis.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button onclick=&quot;togglePopup()&quot;&gt;Show Popup&lt;/button&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+.popup .overlay {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100vw;
+  height:100vh;
+  background:rgba(0,0,0,0.7);
+  z-index:1;
+  display:none;
+}
+
+.popup .content {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  background:#fff;
+  width:500px;
+  height:250px;
+  z-index:2;
+  text-align:center;
+  padding:20px;
+  box-sizing:border-box;
+  font-family:&quot;Open Sans&quot;,sans-serif;
+}
+
+.popup .close-btn {
+  cursor:pointer;
+  position:absolute;
+  right:20px;
+  top:20px;
+  width:30px;
+  height:30px;
+  background:#222;
+  color:#fff;
+  font-size:25px;
+  font-weight:600;
+  line-height:30px;
+  text-align:center;
+  border-radius:50%;
+}
+
+.popup.active .overlay {
+  display:block;
+}
+
+.popup.active .content {
+  transition:all 300ms ease-in-out;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+button {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  padding:15px;
+  font-size:18px;
+  border:2px solid #222;
+  color:#222;
+  text-transform:uppercase;
+  font-weight:600;
+  background:#fff;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+function togglePopup(){
+  document.getElementById(&quot;popup-1&quot;).classList.toggle(&quot;active&quot;);
+}
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a>          
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

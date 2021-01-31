@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animated Modal Based Login Form using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="In this post we will learn how to create animated popup / modal login form using HTML, CSS and JavaScript. For this, initially we will create button on which we will attach click event and then add login form inside the popup."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Animated Modal Based Login Form using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Animated Modal Based Login Form
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      In this post we will learn how to create animated popup / modal login form using HTML, CSS and JavaScript. For this, initially we will create button on which we will attach "click"  event and then add login form inside the popup.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;center&quot;&gt;
+  &lt;button onclick=&quot;openLoginForm()&quot;&gt;Login&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class=&quot;popup-overlay&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;popup&quot;&gt;
+  &lt;div class=&quot;popup-close&quot; onclick=&quot;closeLoginForm()&quot;&gt;&amp;times;&lt;/div&gt;
+  &lt;div class=&quot;form&quot;&gt;
+    &lt;div class=&quot;avatar&quot;&gt;
+      &lt;img src=&quot;https://bit.ly/31pHqJb&quot; alt=&quot;&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;header&quot;&gt;
+      Member login
+    &lt;/div&gt;
+    &lt;div class=&quot;element&quot;&gt;
+      &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+      &lt;input type=&quot;text&quot; id=&quot;username&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;element&quot;&gt;
+      &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;
+      &lt;input type=&quot;password&quot; id=&quot;password&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;element&quot;&gt;
+      &lt;button&gt;Login&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+body {
+  font-family:&quot;Raleway&quot;;
+}
+.center {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.popup-overlay {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100vh;
+  z-index:1;
+  background:rgba(0,0,0,0.5);
+  display:none;
+}
+.popup {
+  position:absolute;
+  top:-150%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(1.15);
+  width:300px;
+  height:440px;
+  background:#f5f5f5;
+  z-index:2;
+  opacity:0;
+  box-shadow:5px 5px 3px rgba(0,0,0,0.2);
+  transition:transform 300ms ease-in-out,opacity 300ms ease-in-out;
+}
+body.showLoginForm .popup-overlay {
+  display:block;
+}
+body.showLoginForm .popup {
+  top:50%;
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1);
+}
+.popup .popup-close {
+  position:absolute;
+  top:-10px;
+  right:-10px;
+  width:40px;
+  height:40px;
+  background:#555;
+  color:#f5f5f5;
+  font-size:25px;
+  font-weight:600;
+  text-align:center;
+  border-radius:50%;
+  cursor:pointer;
+}
+.popup .form .avatar {
+  margin:30px 0px 20px;
+  text-align:center;
+}
+.popup .form .avatar img {
+  width:120px;
+  border-radius:50%;
+}
+.popup .form .header {
+  text-align:center;
+  font-size:20px;
+  font-weight:600;
+  color:#222;
+  margin:20px 0px;
+}
+.popup .form .element {
+  padding:8px 20px;
+}
+.popup .form .element label {
+  display:block;
+  font-size:14px;
+  color:#222;
+  margin-bottom:5px;
+}
+.popup .form .element input {
+  width:100%;
+  padding:8px 10px;
+  box-sizing:border-box;
+  outline:none;
+  border:1px solid #aaa;
+  background:#eee;
+  border-radius:5px;
+}
+.popup .form .element button {
+  margin-top:5px;
+  width:100%;
+  padding:10px 0px;
+  text-transform:uppercase;
+  outline:none;
+  border:none;
+  font-size:15px;
+  font-weight:600;
+  border-radius:5px;
+  cursor:pointer;
+  background:#4889da;
+  color:#f5f5f5;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+function openLoginForm(){
+  document.body.classList.add(&quot;showLoginForm&quot;);
+}
+function closeLoginForm(){
+  document.body.classList.remove(&quot;showLoginForm&quot;);
+}
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+            <i class="fa fa-codepen"></i>
+          </a>
+          <a class="social-icon" href="https://github.com/imgitto">
+            <i class="fa fa-github"></i>
+          </a>
+          <a class="social-icon" href="https://instagram.com/gitto_official">
+            <i class="fa fa-instagram"></i>
+          </a>          
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

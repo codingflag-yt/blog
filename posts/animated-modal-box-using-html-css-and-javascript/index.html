@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Animated Modal / Popup Box using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="Popup boxes / Modal are useful way of showing an important information to the website visitors. In this post we will see how to create an animated popup box with zoom in effect and close button using HTML, CSS and JavaScript."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Create Animated Modal / Popup Box using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Create Animated Modal / Popup Box
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      Popup boxes / Modal are useful way of showing an important information to the website visitors. In this post we will see how to create an animated popup box with zoom in effect and close button using HTML, CSS and JavaScript.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;popup center&quot;&gt;
+  &lt;div class=&quot;icon&quot;&gt;
+    &lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;title&quot;&gt;
+    Success!!
+  &lt;/div&gt;
+  &lt;div class=&quot;description&quot;&gt;
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias nihil provident voluptatem nulla placeat
+  &lt;/div&gt;
+  &lt;div class=&quot;dismiss-btn&quot;&gt;
+    &lt;button id=&quot;dismiss-popup-btn&quot;&gt;
+      Dismiss
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;center&quot;&gt;
+  &lt;button id=&quot;open-popup-btn&quot;&gt;
+    Open Popup
+  &lt;/button&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+body {
+  background:#ddd;
+  font-family:&quot;Raleway&quot;;
+}
+.center {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.popup {
+  width:350px;
+  height:280px;
+  padding:30px 20px;
+  background:#f5f5f5;
+  border-radius:10px;
+  box-sizing:border-box;
+  z-index:2;
+  text-align:center;
+  opacity:0;
+  top:-200%;
+  transform:translate(-50%,-50%) scale(0.5);
+  transition: opacity 300ms ease-in-out,
+              top 1000ms ease-in-out,
+              transform 1000ms ease-in-out;
+}
+.popup.active {
+  opacity:1;
+  top:50%;
+  transform:translate(-50%,-50%) scale(1);
+  transition: transform 300ms cubic-bezier(0.18,0.89,0.43,1.19);
+}
+.popup .icon {
+  margin:5px 0px;
+  width:50px;
+  height:50px;
+  border:2px solid #34f234;
+  text-align:center;
+  display:inline-block;
+  border-radius:50%;
+  line-height:60px;
+}
+.popup .icon i.fa {
+  font-size:30px;
+  color:#34f234;
+} 
+.popup .title {
+  margin:5px 0px;
+  font-size:30px;
+  font-weight:600;
+}
+.popup .description {
+  color:#222;
+  font-size:15px;
+  padding:5px;
+}
+.popup .dismiss-btn {
+  margin-top:15px;
+}
+.popup .dismiss-btn button {
+  padding:10px 20px;
+  background:#111;
+  color:#f5f5f5;
+  border:2px solid #111;
+  font-size:16px;
+  font-weight:600;
+  outline:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition: all 300ms ease-in-out;
+}
+.popup .dismiss-btn button:hover {
+  color:#111;
+  background:#f5f5f5;
+}
+.popup &gt; div {
+  position:relative;
+  top:10px;
+  opacity:0;
+}
+.popup.active &gt; div {
+  top:0px;
+  opacity:1;
+}
+.popup.active .icon {
+  transition: all 300ms ease-in-out 250ms;
+}
+.popup.active .title {
+  transition: all 300ms ease-in-out 300ms;
+}
+.popup.active .description {
+  transition: all 300ms ease-in-out 350ms;
+}
+.popup.active .dismiss-btn {
+  transition: all 300ms ease-in-out 400ms;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+document.getElementById(&quot;open-popup-btn&quot;).addEventListener(&quot;click&quot;,function(){
+  document.getElementsByClassName(&quot;popup&quot;)[0].classList.add(&quot;active&quot;);
+});
+
+document.getElementById(&quot;dismiss-popup-btn&quot;).addEventListener(&quot;click&quot;,function(){
+  document.getElementsByClassName(&quot;popup&quot;)[0].classList.remove(&quot;active&quot;);
+});
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a>  
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

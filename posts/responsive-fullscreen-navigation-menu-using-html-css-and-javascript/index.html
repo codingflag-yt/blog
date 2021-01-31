@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Responsive Fullscreen Navigation Menu using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="In this article, we will see how to create responsive animated fullscreen sidebar navigation menu using HTML, CSS & JavaScript."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Responsive Fullscreen Navigation Menu using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Design Responsive Fullscreen Navigation Menu
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      In this article, we will see how to create responsive animated fullscreen sidebar navigation menu using HTML, CSS & JavaScript.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;navigation&quot;&gt;
+  &lt;div class=&quot;ham-btn&quot; onclick=&quot;showNav()&quot;&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;links&quot;&gt;
+    &lt;div class=&quot;link&quot;&gt;
+      &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;link&quot;&gt;
+      &lt;a href=&quot;#&quot;&gt;Dashboard&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;link&quot;&gt;
+      &lt;a href=&quot;#&quot;&gt;About&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;link&quot;&gt;
+      &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+  &lt;h1&gt;This is title&lt;/h1&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur impedit quaerat repellendus, ipsa consequuntur eos voluptatibus excepturi officia ea magni, quisquam minus, dolorum rem at ducimus ratione dolore quas necessitatibus.&lt;/p&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+body {
+  margin:0px;
+  font-family:&quot;Open Sans&quot;,sans-serif;
+}
+.content {
+  padding:20px;
+  font-size:18px;
+}
+.navigation {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  background:#111;
+  z-index:200;
+  clip-path:circle(25px at calc(100% - 45px) 45px);
+  transition:all 500ms ease-in-out;
+}
+.navigation.active {
+  clip-path:circle(75%);
+}
+.navigation .ham-btn {
+  position:absolute;
+  top:20px;
+  right:20px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.navigation .ham-btn span {
+  position:absolute;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:50%;
+  height:2px;
+  background:#f5f5f5;
+  transition:all 200ms ease-in-out;
+}
+.navigation .ham-btn span:nth-child(1) {
+  top:30%;
+}
+.navigation .ham-btn span:nth-child(2) {
+  top:50%;
+}
+.navigation .ham-btn span:nth-child(3) {
+  top:70%;
+}
+
+.navigation.active .ham-btn span:nth-child(1) {
+  top:50%;
+  transform:translate(-50%,-50%) rotate(45deg);
+}
+.navigation.active .ham-btn span:nth-child(2) {
+  display:none;
+}
+.navigation.active .ham-btn span:nth-child(3) {
+  top:50%;
+  transform:translate(-50%,-50%) rotate(-45deg);
+}
+
+.navigation .links {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+}
+.navigation .links a {
+  position:relative;
+  display:inline-block;
+  margin:20px 0px;
+  font-size:20px;
+  font-weight:600;
+  text-decoration:none;
+  color:#f5f5f5;
+  text-transform:uppercase;
+  letter-spacing:5px;
+}
+.navigation .links a:after {
+  content:&quot;&quot;;
+  position:absolute;
+  left:0px;
+  bottom:-5px;
+  height:2px;
+  width:0%;
+  background:tomato;
+  transition:all 300ms ease-in-out;
+}
+.navigation .links a:hover:after {
+  width:100%;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+function showNav(){
+  document.getElementsByClassName(&quot;navigation&quot;)[0].classList.toggle(&quot;active&quot;);
+}
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a>        
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

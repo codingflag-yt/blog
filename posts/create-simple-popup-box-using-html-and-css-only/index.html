@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Simple Popup Box using HTML & CSS only</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="Popup boxes / Modal are useful way of showing an important information to the website visitors. In this post we will see how to create an animated popup box with close button using HTML and CSS only. Here we have used special CSS selectors :target to create toggle behaviour."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Create Simple Popup Box using HTML & CSS only"/>
+	    <div class="title">
+	    	Create Simple Popup Box using HTML & CSS only
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	    </div>
+	    <div class="desc">
+	      Popup boxes / Modal are useful way of showing an important information to the website visitors. In this post we will see how to create an animated popup box with close button using HTML and CSS only. Here we have used special CSS selectors ":target" to create toggle behaviour.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;center&quot;&gt;
+  &lt;a href=&quot;#popup&quot;&gt;Open Popup&lt;/a&gt;
+&lt;/div&gt;
+&lt;div id=&quot;popup&quot;&gt;
+  &lt;div class=&quot;popup-content&quot;&gt;
+    &lt;h1&gt;This is title&lt;/h1&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem dignissimos quis expedita earum explicabo nam perspiciatis. Aliquam, laudantium doloremque.&lt;/p&gt;
+    &lt;a href=&quot;#&quot; class=&quot;close-popup&quot;&gt;&amp;times;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+body {
+  margin:0px;
+  height:100vh;
+  font-family:&quot;Open Sans&quot;,sans-serif;
+  background:linear-gradient(to right, #00acee, #205172);
+}
+.center {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.center a {
+  padding:10px 20px;
+  background:#eee;
+  color:#111;
+  font-size:15px;
+  font-weight:600;
+  text-decoration:none;
+  border-radius:5px;
+}
+#popup {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100vw;
+  height:100vh;
+  background:rgba(0,0,0,0.75);
+  display:none;
+}
+#popup .popup-content {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:400px;
+  padding:10px 20px;
+  background:#eee;
+}
+#popup a.close-popup {
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:20px;
+  font-weight:600;
+  text-decoration:none;
+}
+#popup:target {
+  display:block;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+/* No JavaScript Code */
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a>          
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

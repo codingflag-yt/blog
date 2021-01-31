@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Build Your Own Live Code Editor using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="We will need three textarea tags which will correspond to the HTML, CSS and JavaScript code. To actually show the compiled code, we will also need an iframe which allows an html document to be inserted into an existing html page. "/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Build Your Own Live Code Editor using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Build Your Own Live Code Editor
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      We will need three textarea tags which will correspond to the HTML, CSS and JavaScript code. To actually show the compiled code, we will also need an iframe which allows an html document to be inserted into an existing html page. 
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;code-area&quot;&gt;
+  &lt;textarea id=&quot;htmlCode&quot; placeholder=&quot;HTML Code&quot; 
+            oninput=&quot;showPreview()&quot;&gt;&lt;/textarea&gt;
+  &lt;textarea id=&quot;cssCode&quot; placeholder=&quot;CSS Code&quot; 
+            oninput=&quot;showPreview()&quot;&gt;&lt;/textarea&gt;
+  &lt;textarea id=&quot;jsCode&quot; placeholder=&quot;JavaScript Code&quot; 
+            oninput=&quot;showPreview()&quot;&gt;&lt;/textarea&gt;				
+&lt;/div&gt;
+&lt;div class=&quot;preview-area&quot;&gt;
+  &lt;iframe id=&quot;preview-window&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex;
+}
+.code-area {
+  display: flex;
+  flex-direction:column;
+  width: 50%;
+  border-right:1px solid #555;
+}
+.code-area textarea {
+  resize: none;
+  outline: none;
+  width: 100%;
+  height: 33.33%;
+  font-size: 18px;
+  padding: 10px;
+}
+.preview-area {
+  width: 50%;
+}
+.preview-area iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+function showPreview(){
+  var htmlCode = document.getElementById(&quot;htmlCode&quot;).value;
+  var cssCode = &quot;&quot;;
+  var jsCode = &quot;&quot;+document.getElementById(&quot;jsCode&quot;).value+&quot;&quot;;
+  var frame = document.getElementById(&quot;preview-window&quot;).contentWindow.document;
+  frame.open();
+  frame.write(htmlCode+cssCode+jsCode);
+  frame.close();
+}
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a>        
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Simple Sidebar using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="In this post we are going to see how we can design a simple sidebar using HTML, CSS and JavaScript. For this, initially we will create a hamburger menu and attach click event which will handle toggle (sidebar show/ hide) feature."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Create Simple Sidebar using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Create Simple Sidebar
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      In this post we are going to see how we can design a simple sidebar using HTML, CSS and JavaScript. For this, initially we will create a hamburger menu and attach click event which will handle toggle (sidebar show/ hide) feature.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div id=&quot;sidebar&quot;&gt;
+  &lt;div class=&quot;toggle-btn&quot; onclick=&quot;toggleSidebar(this)&quot;&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+  &lt;/div&gt;  
+  &lt;div class=&quot;list&quot;&gt;
+    &lt;div class=&quot;item&quot;&gt;Home&lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;About us&lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;Contact us&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+* {
+  margin:0px;
+  padding:0px;
+  box-sizing:border-box;
+  font-family:sans-serif;
+}
+
+#sidebar {
+  position:absolute;
+  top:0px;
+  left:-200px;
+  width:200px;
+  height:100%;
+  background:#151719;
+  transition:all 300ms linear;
+}
+#sidebar.active {
+  left:0px;
+}
+#sidebar .toggle-btn {
+  position:absolute;
+  left:220px;
+  top:10px;
+}
+#sidebar .toggle-btn span {
+  display:block;
+  width:30px;
+  height:5px;
+  background:#151719;
+  margin:5px 0px;
+  cursor:pointer;
+}
+#sidebar div.list div.item {
+  padding:15px 10px;
+  border-bottom:1px solid #444;
+  color:#fcfcfc;
+  text-transform:uppercase;
+  font-size:15px;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+function toggleSidebar(ref){
+  document.getElementById(&quot;sidebar&quot;).classList.toggle('active');
+}
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a>          
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Liquid Fill Animation Effect using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="Liquid fill animation designed using HTML & CSS only. To do this, we have used only single div tag and fill effect is achieved using :before selector."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Liquid Fill Animation Effect using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Liquid Fill Animation Effect using HTML & CSS only
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	    </div>
+	    <div class="desc">
+	      Liquid fill animation designed using HTML & CSS only. To do this, we have used only single div tag and fill effect is achieved using :before selector. Below is the preview of what we are going to design in this post.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;box&quot;&gt;
+  Fill Effect
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+body {
+  margin:0px;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:&quot;Open Sans&quot;,sans-serif;
+  background:#222;
+}
+.box {
+  width:200px;
+  height:200px;
+  border:10px solid #ccc;
+  border-radius:10px;
+  line-height:200px;
+  text-align:center;
+  color:#ddd;
+  font-size:25px;
+  font-weight:600;
+  text-transform:uppercase;
+  position:relative;
+  overflow:hidden;
+}
+.box:before {
+  content:&quot;&quot;;
+  position:absolute;
+  width:400px;
+  height:400px;
+  background:#00acee;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius:40%;
+  animation:fill 7s ease-in-out infinite;
+  z-index:-1;
+}
+@keyframes fill {
+  from {
+    top:250px;
+    transform:translateX(-50%) rotate(0deg);
+  }
+  to {
+    top:-50px;
+    transform:translateX(-50%) rotate(360deg);
+  }
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+/* No JavaScript Code */
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a>     
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

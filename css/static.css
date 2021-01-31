@@ -1,0 +1,23 @@
+.static {
+	margin:20px auto;
+	width:98%;
+	max-width: 650px;
+	background: #fff;
+	padding: 20px;
+	min-height: 100vh;
+}
+.static .static-header {
+	padding: 10px;
+	margin-bottom:20px;
+}
+.static .static-header h1 {
+	color: #111;
+}
+.static .static-body {
+	padding: 10px;
+}
+.static .static-body div {
+	margin-bottom: 20px;
+	font-size: 15px;
+	color: #222;
+}
