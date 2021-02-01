@@ -17,7 +17,7 @@
   object-fit:cover;
 }
 .section .posts .post .title {
-  font-size:18px;
+  font-size:25px;
   padding:10px;
   font-weight:600;
   color:#222;
@@ -97,7 +97,10 @@
   .section > div:nth-child(1),
   .section > div:nth-child(3) {
     display: none;
-  }  
+  }
+  .section .posts .post .title {
+    font-size: 22px;
+  } 
 }
 @media (min-width:1020px){
   .section {
