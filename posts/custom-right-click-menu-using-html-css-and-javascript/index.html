@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Right Click / Context Menu using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="Web apps are using their own customized context menu to present users with relevant actions. In a web browser, when a right-click action is performed, contextmenu event gets fired. In order to deploy a customized context menu, we’ll need to prevent default behaviour, and then set up, trigger, and position our own menu."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Custom Right Click / Context Menu using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Custom Right Click / Context Menu
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      Web apps are using their own customized context menu to present users with relevant actions. In a web browser, when a right-click action is performed, contextmenu event gets fired. In order to deploy a customized context menu, we’ll need to prevent default behaviour, and then set up, trigger, and position our own menu.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div id=&quot;context-menu&quot;&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;i class=&quot;fa fa-cut&quot;&gt;&lt;/i&gt; Cut
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;i class=&quot;fa fa-clone&quot;&gt;&lt;/i&gt; Copy
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;i class=&quot;fa fa-paste&quot;&gt;&lt;/i&gt; Paste
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;i class=&quot;fa fa-trash-o&quot;&gt;&lt;/i&gt; Delete
+  &lt;/div&gt;
+  &lt;hr&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;i class=&quot;fa fa-refresh&quot;&gt;&lt;/i&gt; Reload
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;i class=&quot;fa fa-times&quot;&gt;&lt;/i&gt; Exit
+  &lt;/div&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+body {
+  margin:0px;
+  font-family:&quot;Open Sans&quot;,sans-serif;
+}
+#context-menu {
+  position:fixed;
+  z-index:10000;
+  width:150px;
+  background:#1b1a1a;
+  border-radius:5px;
+  transform:scale(0);
+  transform-origin:top left;
+}
+#context-menu.active {
+  transform:scale(1);
+  transition:transform 300ms ease-in-out;
+}
+#context-menu .item {
+  padding:8px 10px;
+  font-size:15px;
+  color:#eee;
+}
+#context-menu .item:hover {
+  background:#555;
+}
+#context-menu .item i {
+  display:inline-block;
+  margin-right:5px;
+}
+#context-menu hr {
+  margin:2px 0px;
+  border-color:#555;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+window.addEventListener(&quot;contextmenu&quot;,function(event){
+  event.preventDefault();
+  var contextElement = document.getElementById(&quot;context-menu&quot;);
+  contextElement.style.top = event.offsetY + &quot;px&quot;;
+  contextElement.style.left = event.offsetX + &quot;px&quot;;
+  contextElement.classList.add(&quot;active&quot;);
+});
+window.addEventListener(&quot;click&quot;,function(){
+  document.getElementById(&quot;context-menu&quot;).classList.remove(&quot;active&quot;);
+});
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a> 
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic Paint App using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="This post is about how to build a basic paint/ sketch application using HTML, CSS and JavaScript. Here, we have used p5.js library to create the canvas of paint app. We have used some useful features of p5.js to build this amazing sketch app such as, mouseDragged event , mouseX, mouseY, pmouseX, pmouseY special variables and background, fill, stroke, saveCanvas function"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt=""/>
+	    <div class="title">
+	    	Basic Paint App using p5.js
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      This post is about how to build a basic paint/ sketch application using HTML, CSS and JavaScript. Here, we have used p5.js library to create the canvas of paint app. We have used some useful features of p5.js to build this amazing sketch app such as, "mouseDragged" event , "mouseX, mouseY", "pmouseX, pmouseY" special variables and "background", "fill", "stroke", "saveCanvas" function.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;app&quot;&gt;
+  &lt;div class=&quot;controls&quot;&gt;
+    &lt;div class=&quot;title&quot;&gt;Sketch&lt;/div&gt;
+    &lt;div class=&quot;type&quot;&gt;
+      &lt;input type=&quot;radio&quot; name=&quot;pen-type&quot; id=&quot;pen-pencil&quot; checked&gt;
+      &lt;label for=&quot;pen-pencil&quot;&gt;
+        &lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
+      &lt;/label&gt;
+      &lt;input type=&quot;radio&quot; name=&quot;pen-type&quot; id=&quot;pen-brush&quot;&gt;
+      &lt;label for=&quot;pen-brush&quot;&gt;
+        &lt;i class=&quot;fa fa-paint-brush&quot;&gt;&lt;/i&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;size&quot;&gt;
+      &lt;label for=&quot;pen-size&quot;&gt;Size&lt;/label&gt;
+      &lt;input type=&quot;range&quot; id=&quot;pen-size&quot; min=&quot;1&quot; max=&quot;50&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;color&quot;&gt;
+      &lt;label for=&quot;pen-color&quot;&gt;Color&lt;/label&gt;
+      &lt;input type=&quot;color&quot; id=&quot;pen-color&quot; value=&quot;#000&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button id=&quot;reset-canvas&quot;&gt;Reset&lt;/button&gt;
+      &lt;button id=&quot;save-canvas&quot;&gt;Save&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;canvas-wrapper&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/p5.min.js&quot;&gt;&lt;/script&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+@import &quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css&quot;;
+* {
+  margin:0px;
+  padding:0px;
+  box-sizing:border-box;
+}
+body {
+  background:#555;
+}
+.app {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:650px;
+  height:650px;
+  font-family:&quot;Raleway&quot;, sans-serif;
+}
+.app .controls {
+  height:50px;
+  display:flex;
+  align-items:center;
+  background:#ddd;
+  padding:0px 10px;
+}
+.app .controls .title {
+  font-weight:600;
+  color:#222;
+  width:80px;
+}
+.app .controls .type,
+.app .controls .size,
+.app .controls .color {
+  margin: 0px 10px;
+}
+.app .controls .type input {
+  display:none;
+}
+.app .controls .type label {
+  width:30px;
+  height:30px;
+  display:inline-block;
+  text-align:center;
+  line-height:30px;
+  margin:0px 2px;
+  cursor:pointer;
+}
+.app .controls .type input:checked + label {
+  background:#111;
+  color:#eee;
+  border-radius:50%;
+}
+.app .controls .size input {
+  height:10px;
+}
+.app .controls .actions {
+  flex:1;
+  text-align:right;
+}
+.app .controls .actions button {
+  padding:5px 10px;
+  cursor:pointer;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+function _(selector){
+  return document.querySelector(selector);
+}
+function setup(){
+  let canvas = createCanvas(650, 600);
+  canvas.parent(&quot;canvas-wrapper&quot;);
+  background(255);
+}
+function mouseDragged(){
+  let type = _(&quot;#pen-pencil&quot;).checked?&quot;pencil&quot;:&quot;brush&quot;;
+  let size = parseInt(_(&quot;#pen-size&quot;).value);
+  let color = _(&quot;#pen-color&quot;).value;
+  fill(color);
+  stroke(color);
+  if(type == &quot;pencil&quot;){
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  } else {
+    ellipse(mouseX, mouseY, size, size);
+  }
+}
+_(&quot;#reset-canvas&quot;).addEventListener(&quot;click&quot;, function(){
+  background(255);
+});
+_(&quot;#save-canvas&quot;).addEventListener(&quot;click&quot;,function(){
+  saveCanvas(canvas, &quot;sketch&quot;, &quot;png&quot;);
+});
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a> 
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Signup Form using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="Here, we will see how to design a simple sign-up form using HTML, CSS and JavaScript. For this, initially we will create button on which we will attach click  event and then add signup form inside the popup."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Simple Signup Form using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Simple Signup Form
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      Here, we will see how to design a simple sign-up form using HTML, CSS and JavaScript. For this, initially we will create button on which we will attach "click"  event and then add signup form inside the popup.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;overlay-form&quot;&gt;
+  &lt;div class=&quot;close-btn&quot; onclick=&quot;toggleForm()&quot;&gt;&amp;times;&lt;/div&gt;
+  &lt;h1&gt;Create a new account&lt;/h1&gt;
+  &lt;p&gt;Join our community. Let's set up your account&lt;/p&gt;
+  &lt;div class=&quot;form-element&quot;&gt;
+    &lt;label for=&quot;fullname&quot;&gt;Fullname&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;fullname&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;form-element&quot;&gt;
+    &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+    &lt;input type=&quot;email&quot; id=&quot;email&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;form-element&quot;&gt;
+    &lt;label for=&quot;password-1&quot;&gt;Password&lt;/label&gt;
+    &lt;input type=&quot;password&quot; id=&quot;password-1&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;form-element&quot;&gt;
+    &lt;label for=&quot;password-2&quot;&gt;Confirm password&lt;/label&gt;
+    &lt;input type=&quot;password&quot; id=&quot;password-2&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;form-element&quot;&gt;
+    &lt;button&gt;Signup&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;center&quot;&gt;
+  &lt;button onclick=&quot;toggleForm()&quot;&gt;Signup&lt;/button&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+body {
+  margin:0px;
+  font-family:&quot;Open Sans&quot;,sans-serif;
+  background:#ddd;
+}
+.overlay-form {
+  position:absolute;
+  top:50vh;
+  left:0px;
+  width:100vw;
+  height:0vh;
+  background:rgba(0,0,0,0.8);
+  z-index:-1;
+  opacity:0;
+  padding:80px 100px;
+  overflow:hidden;
+  box-sizing:border-box;
+  transition: top 500ms ease-in-out,
+              opacity 500ms ease-in-out,
+              height 0ms ease-in-out 500ms;  
+}
+.overlay-form .close-btn {
+  position:absolute;
+  top:20px;
+  right:40px;
+  color:#fff;
+  font-size:40px;
+  font-weight:600;
+  cursor:pointer;
+}
+.overlay-form h1 {
+  font-size:32px;
+  color:#fff;
+}
+.overlay-form p {
+  font-size:16px;
+  color:#eee;
+  margin:-15px 0px 30px;
+}
+.overlay-form .form-element {
+  margin:20px 0px;
+}
+.overlay-form label {
+  display:block;
+  font-size:17px;
+  color:#eee;
+  margin-bottom:5px;
+}
+.overlay-form input {
+  width:100%;
+  padding:6px;
+  font-size:17px;
+  border:2px solid #eee;
+  background:transparent;
+  outline:none;
+  border-radius:10px;
+}
+.overlay-form button,
+.center button {
+  margin-top:10px;
+  width:100px;
+  height:35px;
+  font-size:15px;
+  text-transform:uppercase;
+  background:#fff;
+  color:#222;
+  border:none;
+  outline:none;
+  border-radius:10px;
+}
+.center {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.center button {
+  width:150px;
+  height:40px;
+  font-weight:600;
+  box-shadow:3px 3px 2px 1px rgba(0,0,0,0.1);
+  cursor:pointer;
+}
+
+body.activeForm .overlay-form {
+  z-index:2;
+  opacity:1;
+  top:0px;
+  height:100vh;
+  transition: top 500ms ease-in-out,
+              opacity 500ms ease-in-out,
+              height 0ms ease-in-out 0ms;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+function toggleForm(){
+  document.body.classList.toggle('activeForm');
+}
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a> 
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>
