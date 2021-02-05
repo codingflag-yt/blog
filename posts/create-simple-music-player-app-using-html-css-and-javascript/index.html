@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Music Player App using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="This Post is about how to create a music player app using HTML , CSS and JavaScript. This music player app supports play/pause, forward/backward, seek bar, playlist etc.. You have to store music and thumbnail files in files directory and define JavaScript object which will stores information of song name, artist, its mp3 file and thumbnail file."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Simple Music Player App using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Simple Music Player App
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      This Post is about how to create a music player app using HTML , CSS and JavaScript. This music player app supports play/pause, forward/backward, seek bar, playlist etc.. You have to store music and thumbnail files in files directory and define JavaScript object which will stores information of song name, artist, its mp3 file and thumbnail file.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;player&quot;&gt;
+	&lt;div class=&quot;main&quot;&gt;
+		&lt;audio&gt;&lt;/audio&gt;
+		&lt;div class=&quot;thumbnail&quot;&gt;
+			&lt;img src=&quot;&quot;&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;seekbar&quot;&gt;
+			&lt;input type=&quot;range&quot;&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;details&quot;&gt;
+			&lt;h2&gt;&lt;/h2&gt;
+			&lt;p&gt;&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;controls&quot;&gt;
+			&lt;div class=&quot;prev-control&quot;&gt;
+				&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;play-pause-control paused&quot;&gt;
+				&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;
+				&lt;i class=&quot;fa fa-pause&quot;&gt;&lt;/i&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;next-control&quot;&gt;
+				&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;player-list&quot;&gt;
+		&lt;div class=&quot;toggle-list&quot;&gt;
+			&lt;i class=&quot;fa fa-angle-up&quot;&gt;&lt;/i&gt;
+			&lt;i class=&quot;fa fa-angle-down&quot;&gt;&lt;/i&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;list&quot;&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+* {
+	margin:0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+body {
+	height: 100vh;
+	font-family: &quot;Raleway&quot;;
+}
+.player {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 320px;
+	height: 480px;
+	overflow: hidden;
+}
+.player .main {
+	width: 100%;
+	height: 100%;
+	background: #222;
+	transition:all 500ms ease-in-out;
+}
+.player .main .thumbnail img {
+	width: 100%;
+}
+.player .main .seekbar {
+	margin-top: -15px;
+}
+.player .main .seekbar input[type=&quot;range&quot;] {
+	-webkit-appearance:none;
+	width: 100%;
+	height: 4px;
+	outline: none;
+	background: #aaa;
+	overflow: hidden;
+}
+.player .main .seekbar input[type=&quot;range&quot;]::-webkit-slider-thumb {
+	-webkit-appearance:none;
+	width: 0px;
+	height: 0px;
+	box-shadow: -300px 0px 0px 300px #00acee;
+}
+.player .main .details {
+	text-align: center;
+	padding: 15px 0px;
+}
+.player .main .details h2 {
+	font-size: 18px;
+	color:#eee;
+	margin-bottom: 5px;
+}
+.player .main .details p {
+	font-size: 15px;
+	color: #aaa;
+}
+.player .main .controls {
+	display: flex;
+	justify-content: center;
+	margin:8px 0px;
+}
+.player .main .controls &gt; div {
+	margin:0px 30px;
+	cursor: pointer;
+}
+.player .main .controls i.fa {
+	font-size:25px;
+	color: #ddd;
+}
+.player .main .controls &gt; div.play-pause-control i.fa-play {
+	display: none;
+}
+.player .main .controls &gt; div.play-pause-control.paused i.fa-play {
+	display: block;
+}
+.player .main .controls &gt; div.play-pause-control.paused i.fa-pause {
+	display: none;
+}
+.player .player-list {
+	position: absolute;
+	width: 100%;
+	margin-top:-20px;
+	height: 350px;
+	overflow-y: scroll;
+	background: rgba(0,0,0,0.8);
+	z-index:2;
+	transition:all 500ms ease-in-out;
+}
+.player .player-list .toggle-list {
+	position: sticky;
+	top:0px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	background: #555;
+}
+.player .player-list .toggle-list i.fa {
+	color: #ccc;
+	font-size: 20px;
+	font-weight: 600;
+}
+.player .player-list .toggle-list i.fa-angle-down {
+	display: none;
+}
+.player .player-list .toggle-list.active i.fa-angle-up {
+	display: block;
+}
+.player .player-list .toggle-list.active i.fa-angle-down {
+	display: none;
+}
+.player .list {
+	padding: 10px;
+}
+.player .list .item {
+	display: flex;
+	padding: 5px 0px;
+	border-bottom: 1px solid #222;
+	cursor: pointer;
+}
+.player .list .item .thumbnail {
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+}
+.player .list .thumbnail img {
+	width: 100%;
+	height: 100%;
+}
+.player .list .item .details {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0px 10px;
+}
+.player .list .item .details h2 {
+	color: #eee;
+	font-size: 16px;
+}
+.player .list .item .details p {
+	color: #aaa;
+	font-size: 15px;
+}
+.player .player-list::-webkit-scrollbar {
+	width: 5px;
+	background: #222;
+}
+.player .player-list::-webkit-scrollbar-thumb {
+	background: #00acee;
+}
+.player.activeSongList .player-list {
+	margin-top: -350px;
+}
+.player.activeSongList .main {
+	filter:blur(5px);
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+function _(query){
+	return document.querySelector(query);
+}
+function _all(query){
+	return document.querySelectorAll(query);
+}
+let songList = [
+	{
+		thumbnail:&quot;Bright_Future.jpg&quot;,
+		audio:&quot;Bright_Future.mp3&quot;,
+		songname:&quot;Bright Future&quot;,
+		artistname:&quot;Silent Partner&quot;
+	},
+	{
+		thumbnail:&quot;Bovi.jpg&quot;,
+		audio:&quot;Bovi.mp3&quot;,
+		songname:&quot;Bovi&quot;,
+		artistname:&quot;The Grand Affair&quot;,
+	},
+	{
+		thumbnail:&quot;Sunny_Looks_Good_on_You.jpg&quot;,
+		audio:&quot;Sunny_Looks_Good_on_You.mp3&quot;,
+		songname:&quot;Sunny Looks Good on You&quot;,
+		artistname:&quot;Midnight North&quot;,
+	},
+	{
+		thumbnail:&quot;Bright_Eyed_Blues.jpg&quot;,
+		audio:&quot;Bright_Eyed_Blues.mp3&quot;,
+		songname:&quot;Bright Eyed Blues&quot;,
+		artistname:&quot;Unicorn Heads&quot;,
+	},
+	{
+		thumbnail:&quot;How_it_Began.jpg&quot;,
+		audio:&quot;How_it_Began.mp3&quot;,
+		songname:&quot;How it Began&quot;,
+		artistname:&quot;Silent Partner&quot;,
+	},
+	{
+		thumbnail:&quot;Simon_s_Song.jpg&quot;,
+		audio:&quot;Simon_s_Song.mp3&quot;,
+		songname:&quot;Simon's Song&quot;,
+		artistname:&quot;Dan Lebowitz&quot;,
+	},
+	{
+		thumbnail:&quot;Scanline.jpg&quot;,
+		audio:&quot;Scanline.mp3&quot;,
+		songname:&quot;Scanline&quot;,
+		artistname:&quot;Mike Relm&quot;,
+	},
+	{
+		thumbnail:&quot;Flight_To_Tunisia.jpg&quot;,
+		audio:&quot;Flight_To_Tunisia.mp3&quot;,
+		songname:&quot;Flight To Tunisia&quot;,
+		artistname:&quot;Causmic&quot;,
+	},
+	{
+		thumbnail:&quot;Calimba.jpg&quot;,
+		audio:&quot;Calimba.mp3&quot;,
+		songname:&quot;Calimba&quot;,
+		artistname:&quot;E's Jammy Jams&quot;,
+	},
+	{
+		thumbnail:&quot;Everglow.jpg&quot;,
+		audio:&quot;Everglow.mp3&quot;,
+		songname:&quot;Everglow&quot;,
+		artistname:&quot;Patrick Patrikios&quot;,
+	}
+];
+
+let currentSongIndex = 0;
+
+let player = _(&quot;.player&quot;),
+	toggleSongList = _(&quot;.player .toggle-list&quot;);
+
+let main = {
+	audio:_(&quot;.player .main audio&quot;),
+	thumbnail:_(&quot;.player .main img&quot;),
+	seekbar:_(&quot;.player .main input&quot;),
+	songname:_(&quot;.player .main .details h2&quot;),
+	artistname:_(&quot;.player .main .details p&quot;),
+	prevControl:_(&quot;.player .main .controls .prev-control&quot;),
+	playPauseControl:_(&quot;.player .main .controls .play-pause-control&quot;),
+	nextControl:_(&quot;.player .main .controls .next-control&quot;)
+}
+
+toggleSongList.addEventListener(&quot;click&quot;, function(){
+	toggleSongList.classList.toggle(&quot;active&quot;);
+	player.classList.toggle(&quot;activeSongList&quot;);
+});
+
+_(&quot;.player .player-list .list&quot;).innerHTML = (songList.map(function(song,songIndex){
+	return `
+		&lt;div class=&quot;item&quot; songIndex=&quot;${songIndex}&quot;&gt;
+			&lt;div class=&quot;thumbnail&quot;&gt;
+				&lt;img src=&quot;./files/${song.thumbnail}&quot;&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;details&quot;&gt;
+				&lt;h2&gt;${song.songname}&lt;/h2&gt;
+				&lt;p&gt;${song.artistname}&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	`;
+}).join(&quot;&quot;));
+
+let songListItems = _all(&quot;.player .player-list .list .item&quot;);
+for(let i=0;i&lt;songListItems.length;i++){
+	songListItems[i].addEventListener(&quot;click&quot;,function(){
+		currentSongIndex = parseInt(songListItems[i].getAttribute(&quot;songIndex&quot;));
+		loadSong(currentSongIndex);
+		player.classList.remove(&quot;activeSongList&quot;);
+	});
+}
+
+function loadSong(songIndex){
+	let song = songList[songIndex];
+	main.thumbnail.setAttribute(&quot;src&quot;,&quot;./files/&quot;+song.thumbnail);
+	document.body.style.background = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url(&quot;./files/${song.thumbnail}&quot;) center no-repeat`;
+	document.body.style.backgroundSize = &quot;cover&quot;;	
+	main.songname.innerText = song.songname;
+	main.artistname.innerText = song.artistname;
+	main.audio.setAttribute(&quot;src&quot;,&quot;./files/&quot;+song.audio);
+	main.seekbar.setAttribute(&quot;value&quot;,0);
+	main.seekbar.setAttribute(&quot;min&quot;,0);
+	main.seekbar.setAttribute(&quot;max&quot;,0);
+	main.audio.addEventListener(&quot;canplay&quot;,function(){
+		main.audio.play();
+		if(!main.audio.paused){
+			main.playPauseControl.classList.remove(&quot;paused&quot;);
+		}
+		main.seekbar.setAttribute(&quot;max&quot;,parseInt(main.audio.duration));
+		main.audio.onended = function(){
+			main.nextControl.click();
+		}
+	})
+}
+setInterval(function(){
+	main.seekbar.value = parseInt(main.audio.currentTime);
+},1000);
+
+main.prevControl.addEventListener(&quot;click&quot;,function(){
+	currentSongIndex--;
+	if(currentSongIndex &lt; 0){
+		currentSongIndex = songList.length + currentSongIndex;
+	}
+	loadSong(currentSongIndex);
+});
+main.nextControl.addEventListener(&quot;click&quot;,function(){
+	currentSongIndex = (currentSongIndex+1) % songList.length;
+	loadSong(currentSongIndex);
+});
+main.playPauseControl.addEventListener(&quot;click&quot;,function(){
+	if(main.audio.paused){
+		main.playPauseControl.classList.remove(&quot;paused&quot;);
+		main.audio.play();
+	} else {
+		main.playPauseControl.classList.add(&quot;paused&quot;);
+		main.audio.pause();
+	}
+});
+main.seekbar.addEventListener(&quot;change&quot;,function(){
+	main.audio.currentTime = main.seekbar.value;
+});
+loadSong(currentSongIndex);
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a> 
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>
