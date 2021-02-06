@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tab Based Signup & Login Form using HTML, CSS & JavaScript</title>
+	<meta charset="UTF-8"/>
+	<meta name="description" content="This article takes us through how we can create a sign up + sign in form using HTML, CSS and JavaScript. There are two different tabs for Sign in and Sign up , whichever tab we will click on, the respective form will  be displayed."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/post.css"/>
+</head>
+<body>
+	<div class="header">
+	  <a class="logo" href="../../index.html">Gitto</a>
+	</div>
+
+	<div class="main">
+	  <div class="gap"></div>
+	  <div class="post">
+	    <img src="preview.png" alt="Tab Based Signup & Login Form using HTML, CSS & JavaScript"/>
+	    <div class="title">
+	    	Tab Based Signup & Login Form
+	    </div>
+	    <div class="tags">
+	      <div>HTML</div>
+	      <div>CSS</div>
+	      <div>JavaScript</div>
+	    </div>
+	    <div class="desc">
+	      This article takes us through how we can create a sign up + sign in form using HTML, CSS and JavaScript. There are two different tabs for Sign in and Sign up , whichever tab we will click on, the respective form will  be displayed.
+	    </div>
+	    <div class="code">
+	      <div class="tabs">
+	        <div class="tab-header">
+	          <div class="active">HTML</div>
+	          <div>CSS</div>
+	          <div>JavaScript</div>
+	        </div>
+	        <div class="tab-body">
+	          <div class="active">
+	            <pre class="prettyprint linenums">
+&lt;div class=&quot;form&quot;&gt;
+  &lt;div class=&quot;tab-header&quot;&gt;
+    &lt;div class=&quot;active&quot;&gt;Sign Up&lt;/div&gt;
+    &lt;div&gt;Sign In&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;tab-content&quot;&gt;
+    &lt;div class=&quot;tab-body active&quot;&gt;
+      &lt;div class=&quot;form-element&quot;&gt;
+        &lt;input type=&quot;text&quot; placeholder=&quot;Email&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-element&quot;&gt;
+        &lt;input type=&quot;text&quot; placeholder=&quot;Username&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-element&quot;&gt;
+        &lt;input type=&quot;password&quot; placeholder=&quot;Password&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-element&quot;&gt;
+        &lt;button&gt;Sign Up&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class=&quot;tab-body&quot;&gt;
+      &lt;div class=&quot;form-element&quot;&gt;
+        &lt;input type=&quot;text&quot; placeholder=&quot;Email / Username&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-element&quot;&gt;
+        &lt;input type=&quot;password&quot; placeholder=&quot;Password&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-element&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;remember_me&quot;&gt;
+        &lt;label for=&quot;remember_me&quot;&gt;Remember me&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-element&quot;&gt;
+        &lt;button&gt;Sign In&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+	            </pre>
+	          </div>
+	          <div>
+	          	<pre class="prettyprint linenums">
+* {
+  box-sizing:border-box;
+}
+body {
+  background:#ddd;
+  font-family:&quot;Raleway&quot;;
+}
+.form {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:300px;
+  background:#f5f5f5;
+  box-shadow:5px 5px 10px 5px #ccc;
+}
+.form .tab-header {
+  height:50px;
+  line-height:50px;
+}
+.form .tab-header &gt; div {
+  width:50%;
+  float:left;
+  text-align:center;
+  background:#ddd;
+  color:#555;
+  cursor:pointer;
+}
+.form .tab-header &gt; div.active {
+  background:#f5f5f5;
+  color:#111;
+}
+.form .tab-content {
+  padding:20px;
+}
+.form .tab-content .form-element {
+  margin:10px 0px;
+}
+.form .tab-content .form-element input {
+  width:100%;
+  padding:10px;
+  border:1px solid #aaa;
+  font-size:16px;
+  background:#f5f5f5;
+  border-radius:5px;
+  outline:none;
+}
+.form .tab-content .form-element input[type=&quot;checkbox&quot;] {
+  width:30px;
+  margin:8px 0px;
+  margin-left:-5px;
+}
+.form .tab-content .form-element label {
+  color:#111;
+}
+.form .tab-content .form-element button {
+  margin-top:5px;
+  width:100%;
+  padding:10px;
+  border:none;
+  outline:none;
+  background:#00acee;
+  color:#f5f5f5;
+  font-size:16px;
+  text-transform:uppercase;
+  cursor:pointer;
+  border-radius:5px;
+}
+.form .tab-content &gt; div.active {
+  display:block;
+}
+.form .tab-content &gt; div {
+  display:none;
+}
+	          	</pre>
+	          </div>
+	          <div>
+	            <pre class="prettyprint linenums">
+let tabPanes = document.getElementsByClassName(&quot;tab-header&quot;)[0].getElementsByTagName(&quot;div&quot;);
+
+for(let i=0;i&lt;tabPanes.length;i++){
+  tabPanes[i].addEventListener(&quot;click&quot;,function(){
+    document.getElementsByClassName(&quot;tab-header&quot;)[0].getElementsByClassName(&quot;active&quot;)[0].classList.remove(&quot;active&quot;);
+    tabPanes[i].classList.add(&quot;active&quot;);
+    
+    document.getElementsByClassName(&quot;tab-content&quot;)[0].getElementsByClassName(&quot;active&quot;)[0].classList.remove(&quot;active&quot;);
+    document.getElementsByClassName(&quot;tab-content&quot;)[0].getElementsByClassName(&quot;tab-body&quot;)[i].classList.add(&quot;active&quot;);
+  });
+}
+	          	</pre>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="gap">
+	    <div class="card">
+	      <div class="profile">
+	        <img src="../../assets/profile.jpeg" alt="Profile">
+	      </div>
+	      <div class="name">Darshan</div>
+	      <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus accusantium odio</div>
+	      <div class="social-links">
+	        <a class="social-icon" href="https://codepen.io/dsr">
+	          <i class="fa fa-codepen"></i>
+	        </a>
+	        <a class="social-icon" href="https://github.com/imgitto">
+	          <i class="fa fa-github"></i>
+	        </a>
+	        <a class="social-icon" href="https://instagram.com/gitto_official">
+	          <i class="fa fa-instagram"></i>
+	        </a> 
+	      </div>
+	    </div>
+	    <div class="posts">
+	      <h4>Older posts</h4>
+	      	<!--
+		      <div>
+		        <img src="" alt="">
+		        <div class="title"></div>
+		        <div class="tags"></div>
+		      </div>
+	  		-->
+	    </div>
+	  </div>
+	</div>
+	<div class="footer">
+	  <div class="links">
+  		<a href="../../about.html">About</a>
+  		<a href="../../contact.html">Contact</a>
+  		<a href="../../privacy_policy.html">Privacy Policy</a>
+	  </div>
+	  <div>
+	  	Copyright @2021
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<script type="text/javascript" src="../../js/post.js"></script>
+</body>
+</html>
