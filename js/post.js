@@ -16,6 +16,7 @@ for(let i=0;i<tab.headerElements.length;i++){
 }
 
 /* ========== Promotion ========== */
+/*
 (function(){
   function promotion(){
     let popupPromotionElement = document.createElement("div");
@@ -52,3 +53,4 @@ for(let i=0;i<tab.headerElements.length;i++){
     promotion();
   }
 })();
+*/
