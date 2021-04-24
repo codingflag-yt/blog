@@ -171,6 +171,12 @@
   }
 }
 
+.ad {
+  display:flex;
+  justify-content:center;
+  margin:10px 0px;
+}
+
 pre .str, code .str { color: #65B042; } /* string  - green */
 pre .kwd, code .kwd { color: #E28964; } /* keyword - dark pink */
 pre .com, code .com { color: #AEAEAE; font-style: italic; } /* comment - gray */
