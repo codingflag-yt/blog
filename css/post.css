@@ -174,7 +174,7 @@
 .ad {
   display:flex;
   justify-content:center;
-  margin:10px 0px;
+  margin:20px 0px;
 }
 
 pre .str, code .str { color: #65B042; } /* string  - green */
